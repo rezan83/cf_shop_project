@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
         @comment = @product.comments.new(comment_params)
         @comment.user = current_user
         @user = current_user
-        @comment.save
+        # @comment.save
         respond_to do |format|
             if @comment.save
                 # ActionCable.server.broadcast 'product_channel',

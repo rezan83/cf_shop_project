@@ -5,7 +5,7 @@ class Comment < ApplicationRecord
   validates :rating, numericality: { only_integer: true }
   after_create_commit { CommentUpdateJob.perform_later(self, self.user) }
   belongs_to :user
-  belongs_to :product, touch: true
+  belongs_to :product
   scope :rating_desc, -> {order(rating: :desc)} 
   scope :rating_asce, -> {order(rating: :asc)}
   scope :as_created, -> {order(created_at: :desc)}
