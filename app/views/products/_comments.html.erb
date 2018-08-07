@@ -1,14 +1,8 @@
 <div class="product-reviews">
-    <% @comments = @product.comments.paginate(:page => params[:page], :per_page => 5 ).as_created %>
-    <% @comments.each do |comment| %>
-        <%= render comment %>
-    <% end %>
+<% @comments.each do |comment| %>
+    <%= render comment %>
+<% end %>
+<div class ="pagination">
+<p> <%= will_paginate @comments, class: "apple_pagination" %></p>
 </div>
-<hr>
-<div class="apple_pagination">
-    <%= will_paginate @comments%>
-    
-    <div class="page_info">
-      <%= page_entries_info @comments %>
-    </div>
 </div>

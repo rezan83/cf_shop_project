@@ -55,6 +55,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.app_generators.javascript_engine = :javascript
-  
+  # disable complaining about allowed ips
+  config.web_console.whiny_requests = false
  
 end
