@@ -2,33 +2,35 @@ require 'rails_helper'
 
 describe UsersController, type: :controller do
     
-    
-    
     describe 'GET #show' do
-    
-    context "user is loged in" do
-        user = FactoryBot.create(:user)
-        user2 = FactoryBot.create(:user)
+    before(:all) do
+        @user = FactoryBot.create(:user)
+        @id = @user.id
+        @user2 = FactoryBot.create(:user)
+        @id2 = @user2.id
+        @user3 = FactoryBot.create(:user)
+        @id3 = @user3.id
+        end
         
+    context "user is loged in" do
         before do
-            sign_in user
+            sign_in @user
         end
-        it "correct user details" do
-            get :show, params: {id: user.id}
+        it " user see his details" do
+            get :show, params: {id: @id}
             expect(response).to be_ok
-            expect(assigns(:user)).to eq user
+            expect(assigns(:user)).to eq @user
         end
-        it "redirect if another user" do
-            get :show, params: {id: user2.id}
+        
+        it "redirect if trying see another user" do
+            get :show, params: {id: @id2}
             expect(response).to redirect_to (root_path)
         end
         
     end
-    context "user is loged out" do
-        user3 = FactoryBot.create(:user)
-        
+    context "user is not loged in" do
         it "redirect to login" do
-            get :show, params: {id: user3.id}
+            get :show, params: {id: @id3}
             expect(response).to redirect_to (new_user_session_path)
         end
         

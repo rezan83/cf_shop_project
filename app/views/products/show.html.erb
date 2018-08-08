@@ -16,11 +16,17 @@
 </p>
 
 <p>
+  
+<% if @product.image_url.present? %>
 
-    <img           src= "<%= asset_path(@product.image_url) %>"
-       data-zoom-image= "<%= asset_path(@product.image_url+".big.jpg") %>" 
-       class="img-responsive zoom"
-    />
+  <img           src= "<%= asset_path(@product.image_url) %>"
+         data-zoom-image= "<%= asset_path(@product.image_url) %>" 
+         class="img-responsive zoom"
+  />
+    
+<% else %>
+<% end %>
+    
     
 </p>
 
