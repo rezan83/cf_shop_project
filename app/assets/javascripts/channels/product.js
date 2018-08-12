@@ -9,6 +9,10 @@ App.product = App.cable.subscriptions.create("ProductChannel", {
   
     received: function(data) {
       // Called when there's incoming data on the websocket for this channel
+      return actions(data);
+    },
+    
+    actions: function(data){
       $(".cable-comment").show();
       
       $('.product-reviews').prepend(data.comment);
